@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Debounceing</title>
+</head>
+<body>
+    
+    <h1>1. Write a program to debounce button onClick elements, or a search bar</h1>
+
+    
+    <button onclick="processChange()">Click Me</button> 
+    <br>
+    <br>
+    <input type="text" onkeyup="processChange()">
+    <!-- <input type="text" onkeyup="getData()"> -->
+    <br>
+    <br>
+      window.addEventListener("scroll", processChange);
+    <h1>Note.🎯  window.addEventListener("scroll", processChange)</h1>
+</body>
+</html>
+
+<script>
+  console.log("Write a program to debounce button onClick elements, or a search bar");
+
+
+//   let counter = 0;
+//   const getData = ()=>{
+//     // calls and api are get data 
+//     counter++;
+//     console.log("Feching data...", counter);
+//   }
+
+   
+//   const debounce = function(fun,delay){
+
+//     let timer;
+//     return function(){
+//  //2. and reurn copy of this fun 
+//         let context = this;
+//         args = arguments;
+
+//         clearTimeout(timer);
+//        timer =   setTimeout(()=>{
+//             getData.apply(context, args);
+//         },delay)
+
+//     }
+//   }
+
+
+
+//   const processChange = debounce(getData, 300);
+// //1. every key press it calll 
+
+
+ let counter = 0;
+const  getData = ()=>{
+    // make an api and get the data 
+    counter++;
+    console.log("Feching data ...", counter);
+}
+
+
+ const debounce = function (fun, delay){
+  let timer;
+    return function(...args){
+
+      clearTimeout(timer);
+      timer = setTimeout(()=>{
+            getData.apply(this, arguments);
+        }, delay);
+    }
+
+
+
+ }
+
+
+const processChange = debounce(getData, 300);
+</script>
