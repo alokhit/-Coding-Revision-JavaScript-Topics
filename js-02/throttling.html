@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THROTTLER</title>
+  </head>
+  <body>
+    <h1>
+      Write a program to throttle a button onClick elements, or a search bar
+    </h1>
+
+    <br />
+    <br />
+    <br />
+    <!-- <h5>function throttler(){
+        // write code here
+    }
+    
+    button.addEventListener("click",throttler(callback,delay))
+    </h5> -->
+  </body>
+</html>
+
+<script>
+  //   const expensive = () => {
+  //   console.count("Expensive performance");
+  //   };
+
+  //  window.addEventListener("resize", expensive);
+
+  const loggerFun = () => {
+    console.count("Throttle function called");
+  };
+
+  const throttle = (fun, limit) => {
+    let flag = true;
+    return function (...args) {
+      if (flag) {
+        fun.apply(this, args);
+        flag = false;
+
+        setTimeout(() => {
+          flag = true;
+        }, limit);
+      }
+    };
+  };
+
+  const betterFunction = throttle(loggerFun, 1000);
+
+  window.addEventListener("resize", betterFunction);
+
+
+
+
+
+
+  // let button = document.createElement("button");
+  // button.addEventListener("click", throttler(callback, delay));
+
+  // document.body.append(button);
+
+  //   const loggerFunc = () => {
+  //     console.count("Throttled Function");
+  //   };
+
+  //   const throttle = (fn, limit) => {
+  //     let flag = true;
+  //     return function () {
+  //       let context = this;
+  //       let args = arguments;
+  //       if (flag) {
+  //         fn.apply(context, args);
+  //         flag = false;
+  //         setTimeout(() => {
+  //           flag = true;
+  //         }, limit);
+  //       }
+  //     };
+  //   };
+
+  //   const betterLoggerFunction = throttle(loggerFunc, 1000);
+
+  //   window.addEventListener("resize", betterLoggerFunction);
+
+  // This is the normal Function without Throttling
+  //Check the console for the difference between the calls of Normal Function and the Throttled Function
+  //   const normalFunc = () => {
+  //     console.count("Normal Function");
+  //   };
+
+  //   window.addEventListener("resize", normalFunc);
+
+
+
+
+
+  
+</script>
