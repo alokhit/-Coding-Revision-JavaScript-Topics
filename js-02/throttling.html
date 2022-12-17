@@ -14,6 +14,9 @@
     <br />
     <br />
     <br />
+
+    <button id="throttle">Click Me</button>
+
     <!-- <h5>function throttler(){
         // write code here
     }
@@ -30,32 +33,27 @@
 
   //  window.addEventListener("resize", expensive);
 
-  const loggerFun = () => {
-    console.count("Throttle function called");
-  };
+  //   const loggerFun = () => {
+  //     console.count("Throttle function called");
+  //   };
 
-  const throttle = (fun, limit) => {
-    let flag = true;
-    return function (...args) {
-      if (flag) {
-        fun.apply(this, args);
-        flag = false;
+  //   const throttle = (fun, limit) => {
+  //     let flag = true;
+  //     return function (...args) {
+  //       if (flag) {
+  //         fun.apply(this, args);
+  //         flag = false;
 
-        setTimeout(() => {
-          flag = true;
-        }, limit);
-      }
-    };
-  };
+  //         setTimeout(() => {
+  //           flag = true;
+  //         }, limit);
+  //       }
+  //     };
+  //   };
 
-  const betterFunction = throttle(loggerFun, 1000);
+  //   const betterFunction = throttle(loggerFun, 1000);
 
-  window.addEventListener("resize", betterFunction);
-
-
-
-
-
+  //   window.addEventListener("resize", betterFunction);
 
   // let button = document.createElement("button");
   // button.addEventListener("click", throttler(callback, delay));
@@ -93,9 +91,73 @@
 
   //   window.addEventListener("resize", normalFunc);
 
+  // select the button with the given id
+
+  //    const button = document.querySelector("#throttle");
+  //    button.addEventListener("click", throttle);
+
+  // normal function
+//   function throttle() {
+//     console.count("button was clicked");
+//   }
+//   const btn = document.querySelector("#throttle");
+//   btn.addEventListener("click", throttle);
 
 
 
+//   const loggerFun = () => {
+//     console.count("logger was called ");
+//   };
 
-  
+//   function throttle(fun, delay) {
+//     let flag = true;
+//     return function (...args) {
+//       if (flag) {
+//         fun.apply(this, arguments);
+//         flag = false;
+
+//         setTimeout(() => {
+//           flag = true;
+//         }, delay);
+//       }
+//     };
+//   }
+
+//   const betterFuntion = throttle(loggerFun, 1000);
+
+//   const button = document.querySelector("#throttle");
+
+//   button.addEventListener("click", betterFuntion);
+
+//3
+const btn=document.querySelector("#throttle");
+     
+    // Throttling Function
+    const throttleFunction=(func, delay)=>{
+ 
+      // Previously called time of the function
+      let prev = 0;
+      return (...args) => {
+        // Current called time of the function
+        let now = new Date().getTime();
+ 
+        // Logging the difference between previously
+        // called and current called timings
+        console.log(now-prev, delay);
+         
+        // If difference is greater than delay call
+        // the function again.
+        if(now - prev> delay){
+          prev = now;
+ 
+          // "..." is the spread operator here
+          // returning the function with the
+          // array of arguments
+          return func(...args); 
+        }
+      }
+    }
+    btn.addEventListener("click", throttleFunction(()=>{
+      console.log("button is clicked")
+    }, 1500));
 </script>
